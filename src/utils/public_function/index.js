@@ -1,8 +1,7 @@
-const publicFunctions = require.context('./modules', true, /\*.js$/)
-console.log(publicFunctions)
-// let publicFunctions = {}
-// modulesFiles.keys().forEach(item => {
-//   publicFunctions = Object.assign({}, modules, modulesFiles(item).default)
-// })
-//
-// export default publicFunctions
+const publicFunctionFiles = require.context('./modules', false, /.js$/)
+let publicFunction = {}
+publicFunctionFiles.keys().forEach(key => {
+  let newKey = key.replace(/(\.\/|\.js)/g, '')
+  publicFunction[newKey] = require(`./modules/${newKey}`).default;
+})
+export default publicFunction
