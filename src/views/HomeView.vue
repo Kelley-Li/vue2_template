@@ -13,6 +13,15 @@ export default {
   name: 'HomeView',
   components: {
     HelloWorld
+  },
+  created () {
+    window.addEventListener('click', this.$publicFunction.debounce(this.printFn, 1000));
+  },
+  methods:{
+    printFn(){
+      let i=1
+      console.log(i++)
+    }
   }
 }
 </script>
